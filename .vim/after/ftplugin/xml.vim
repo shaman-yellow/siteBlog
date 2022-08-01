@@ -1,0 +1,2 @@
+iabbrev compl <maven.compiler.source>11</maven.compiler.source><CR><maven.compiler.target>11</maven.compiler.target><CR><maven.compiler.compilerVersion>11</maven.compiler.compilerVersion>
+iabbrev repo <repositories><CR><repository><CR><id>alimaven</id><CR><url>https://maven.aliyun.com/repository/public</url><CR></repository><CR></repositories><CR><CR><pluginRepositories><CR><pluginRepository><CR><id>alimaven</id><CR><url>https://maven.aliyun.com/repository/public</url><CR></pluginRepository><CR></pluginRepositories>

@@ -44,7 +44,6 @@ nnoremap ;b :tabe ~/.bashrc<CR>
 nnoremap ;q :q<CR>
 nnoremap ;w :w
 nnoremap ;s :source ~/.vimrc
-nnoremap ;m :Mvn! clean 
 nnoremap ;f :tabe ~/.vim/after/ftplugin/
 nnoremap ;sf :source ~/.vim/after/ftplugin/
 " ## ---------------------------------------------------------------------- 

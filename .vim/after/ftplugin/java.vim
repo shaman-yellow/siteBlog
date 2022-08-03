@@ -1,14 +1,19 @@
 let g:iabbrev_list = { 
-      \ 'pub': 'public',
-      \ 'sta': 'static',
-      \ 'priv': 'private',
+      \ 'bufr': 'BufferedReader',
+      \ 'strbd': 'StringBuilder',
+      \ 'filer': 'FileReader',
+      \ 'raf': 'RandomAccessFile',
+      \ 'pbc': 'public class',
+      \ 'thex': 'throws Exception',
       \ 'abs': 'abstract',
       \ 'alist': 'ArrayList',
       \ 'datai': 'DataInputStream',
       \ 'datao': 'DataOutputStream',
       \ 'file': 'File',
+      \ 'ext': 'extends',
       \ 'frame': 'Frame',
       \ 'hmap': 'HashMap',
+      \ 'hm': 'HashMap',
       \ 'im': 'import',
       \ 'impl': 'implements',
       \ 'int': 'int',
@@ -16,28 +21,29 @@ let g:iabbrev_list = {
       \ 'obji': 'ObjectInputStream',
       \ 'objo': 'ObjectOutputStream',
       \ 'pac': 'package',
+      \ 'pbs': 'public static',
+      \ 'priv': 'private',
       \ 'pt': 'pattern',
       \ 'ptcomp': 'Pattern.compile',
+      \ 'pub': 'public',
       \ 'pwri': 'PrintWriter',
       \ 'randf': 'RandomAccessFile',
       \ 'seri': 'Serializable',
+      \ 'sta': 'static',
       \ 'str': 'String'
       \ }
+let g:ale_java_javac_options = "javac -cp /home/echo/.m2/repository/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"
+let g:ale_java_javac_executable = "javac -cp /home/echo/.m2/repository/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"
 " java import
-iabbrev jimpio import java.io.*;
-iabbrev jimput import java.util.*;
-iabbrev jimpaw import java.awt.*;
-iabbrev jimpsw import java.swing.*;
+" iabbrev jimpio import java.io.*;
+" iabbrev jimput import java.util.*;
+" iabbrev jimpaw import java.awt.*;
+" iabbrev jimpsw import java.swing.*;
 " ## ------------------------------------- 
 " java longwords
 " ## ------------------------------------- 
 " java collection
-" iabbrev jnewa new ArrayList<>();<Esc>b
-iabbrev jnewlob ArrayList<Object>  = new ArrayList<Object>();<Esc>7bl
-iabbrev jnewlstr ArrayList<String>  = new ArrayList<String>();<Esc>7bl
 " hashmap
-iabbrev jnewm Map<String, Object> mapSet = new HashMap<String, Object>();<Esc>
-iabbrev jnewms Map<String, String> mapSet = new HashMap<String, String>();<Esc>
 iabbrev jform for(Object key:mapSet.keySet()){<CR><Esc>
 " ## ------------------------------------- 
 " java gui
@@ -48,7 +54,8 @@ iabbrev jpm public static void main(String[] args) {}<Esc>i<CR><Esc>
 iabbrev jpmex public static void main(String[] args) throws Exception {}<Esc>i<CR><Esc>
 " ## ------------------------------------- 
 " java print
-iabbrev jpt System.out.println();<Esc>b
+iabbrev jptn System.out.println();<Esc>b
+iabbrev jpt System.out.print();<Esc>b
 " ## ------------------------------------- 
 " java forLoop
 iabbrev jfori for(int i = 1; i <= ; i++){<CR>}<Esc>kf;;
@@ -67,7 +74,7 @@ iabbrev jnewrf RandomAccessFile rfile = new RandomAccessFile("", "rw");<Esc>9h
 " String text = rfile.readUTF();
 " ## ------------------------------------- 
 " java string
-iabbrev jstrbb StringBuffer();<Esc>b
+iabbrev jbufr BufferedReader in = new BufferedReader(new FileReader(filename));<CR>in.close();<Esc>ko<Esc>k<End>h
 " ## ------------------------------------- 
 " java pattern
 iabbrev jptt1 String patternString =;<Esc>b
@@ -77,6 +84,13 @@ iabbrev jptt3 Matcher m = p.matcher();<Esc>b
 " function map
 inoremap <silent> ;j <C-R>=Get_args(2)<CR><C-w><C-w><C-R>=Fast_print()<CR><Esc>b
 inoremap ;i <C-R>=Get_args(1)<CR><C-w><C-R>=Iabbrev_echo()<CR>
+nnoremap ;j :!cd target/classes/; java workflow.
+" ## ------------------------------------- 
+nnoremap ;mp :Mvn! clean compile
+nnoremap ;m :Mvn! clean
+nnoremap ;fj :tabe ~/.vim/after/ftplugin/java.vim
+nnoremap ;fjd :tabe ~/.vim/after/ftplugin/java/Fun
+nnoremap ;sfj :source ~/.vim/after/ftplugin/java.vim
 " ## ---------------------------------------------------------------------- 
 " function 
 
@@ -97,26 +111,38 @@ function! Get_args(args)
   return ""
 endfunction
 
-" ## ------------------------------------- 
-
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+let g:obj_type = {
+      \ 'o': 'Object',
+      \ 's': 'String',
+      \ 'i': 'Integer'
+      \ }
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
 function! Iabbrev_echo()
   let l:str = g:str_ARGs
-
-  if has_key(g:iabbrev_list, l:str)
-    let l:res = g:iabbrev_list[l:str]
-  else
-    let l:res = l:str
-  endif
-
+  let l:fun = "FunEx" . matchstr(str, "2.")
+  let l:fun = g:iabbrev_funex[l:fun]
+  let l:res = eval(l:fun . "(str)")
   return l:res
 endfunction
+
+source ~/.vim/after/ftplugin/java/FunEx.vim
+" ## ---------------------------------------------------------------------- 
+" ## ---------------------------------------------------------------------- 
 " ## ---------------------------------------------------------------------- 
 " function
 function! Fast_print()
 
   let l:arg1 = g:str_ARGs_1
   let l:arg2 = g:str_ARGs_2
-  let l:fun = "Fun" . matchstr(arg1, "2.*")
+  let l:fun = "Fun" . matchstr(arg1, "2.")
   let l:fun = g:iabbrev_fun[l:fun]
   let l:res = eval(l:fun . "(arg1, arg2)")
 
@@ -128,30 +154,6 @@ function! Fast_print()
   return l:res
 endfunction
 
-let g:iabbrev_fun = {
-      \ 'Fun': 'Fun_new_normal',
-      \ 'Fun2a': 'Fun_new_array'
-      \ }
-
+source ~/.vim/after/ftplugin/java/Fun.vim
 " ## ---------------------------------------------------------------------- 
-function! Fun_new_normal(arg1, arg2)
-  if has_key(g:iabbrev_list, a:arg1)
-    let l:res = g:iabbrev_list[a:arg1] . " " . a:arg2 . " = " . "new " . 
-          \ g:iabbrev_list[a:arg1] . "()"
-    return res
-  else
-    return ""
-  endif
-endfunction
 
-" ## ------------------------------------- 
-function! Fun_new_array(arg1, arg2)
-  let l:arg1 = substitute(a:arg1, "2.*", "", "")
-  if has_key(g:iabbrev_list, l:arg1)
-    let l:res = g:iabbrev_list[l:arg1] . " " . a:arg2 . "[] = " . "new " .
-          \ g:iabbrev_list[l:arg1] . "[]"
-    return res
-  else
-    return ""
-  endif
-endfunction

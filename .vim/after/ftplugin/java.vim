@@ -1,19 +1,16 @@
 let g:iabbrev_list = { 
-      \ 'bufr': 'BufferedReader',
-      \ 'strbd': 'StringBuilder',
-      \ 'filer': 'FileReader',
-      \ 'raf': 'RandomAccessFile',
-      \ 'pbc': 'public class',
-      \ 'thex': 'throws Exception',
       \ 'abs': 'abstract',
+      \ 'al': 'ArrayList',
       \ 'alist': 'ArrayList',
+      \ 'bf': 'BufferedReader',
       \ 'datai': 'DataInputStream',
       \ 'datao': 'DataOutputStream',
-      \ 'file': 'File',
       \ 'ext': 'extends',
+      \ 'file': 'File',
+      \ 'filer': 'FileReader',
       \ 'frame': 'Frame',
-      \ 'hmap': 'HashMap',
       \ 'hm': 'HashMap',
+      \ 'hmap': 'HashMap',
       \ 'im': 'import',
       \ 'impl': 'implements',
       \ 'int': 'int',
@@ -21,15 +18,18 @@ let g:iabbrev_list = {
       \ 'obji': 'ObjectInputStream',
       \ 'objo': 'ObjectOutputStream',
       \ 'pac': 'package',
+      \ 'pbc': 'public class',
       \ 'pbs': 'public static',
       \ 'priv': 'private',
       \ 'pt': 'pattern',
       \ 'ptcomp': 'Pattern.compile',
       \ 'pub': 'public',
       \ 'pwri': 'PrintWriter',
-      \ 'randf': 'RandomAccessFile',
+      \ 'raf': 'RandomAccessFile',
       \ 'seri': 'Serializable',
       \ 'sta': 'static',
+      \ 'strbd': 'StringBuilder',
+      \ 'thex': 'throws Exception',
       \ 'str': 'String'
       \ }
 let g:ale_java_javac_options = "javac -cp /home/echo/.m2/repository/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"
@@ -74,7 +74,7 @@ iabbrev jnewrf RandomAccessFile rfile = new RandomAccessFile("", "rw");<Esc>9h
 " String text = rfile.readUTF();
 " ## ------------------------------------- 
 " java string
-iabbrev jbufr BufferedReader in = new BufferedReader(new FileReader(filename));<CR>in.close();<Esc>ko<Esc>k<End>h
+iabbrev jbufr BufferedReader in = new BufferedReader(new FileReader(filename));<CR>in.close();<Esc>ko<Esc>
 " ## ------------------------------------- 
 " java pattern
 iabbrev jptt1 String patternString =;<Esc>b
@@ -84,6 +84,7 @@ iabbrev jptt3 Matcher m = p.matcher();<Esc>b
 " function map
 inoremap <silent> ;j <C-R>=Get_args(2)<CR><C-w><C-w><C-R>=Fast_print()<CR><Esc>b
 inoremap ;i <C-R>=Get_args(1)<CR><C-w><C-R>=Iabbrev_echo()<CR>
+inoremap ;; <Esc>A;<Esc>
 nnoremap ;j :!cd target/classes/; java workflow.
 " ## ------------------------------------- 
 nnoremap ;mp :Mvn! clean compile

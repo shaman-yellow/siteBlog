@@ -11,4 +11,4 @@ iabbrev pbm pbapply::pbmapply<ESC>
 iabbrev pba pbapply::pbapply<ESC>
 iabbrev ii %in%
 " ## ---------------------------------------------------------------------- 
-
+nnoremap ;r mr/## ========== Run block ========== <CR>

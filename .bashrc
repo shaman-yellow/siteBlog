@@ -20,8 +20,9 @@ alias deepl=google-chrome\ https://www.deepl.com/translator
 alias fy=trans
 alias fyz=trans\ :zh
 alias cwe=cd\ "~/.wine/drive_c/users/echo/My\ Documents/WeChat\ Files/wxid_fehx3syoq76312/FileStorage/MsgAttach/9e20f478899dc29eb19741386f9343c8/File"
-alias msc=bash\ /home/echo/bash_script/msconvert_pre.sh
-alias mvn_create=bash\ /home/echo/bash_script/mvn_create.sh
+alias msc=bash\ ~/bash_script/msconvert_pre.sh
+alias unjar=bash\ ~/bash_script/unjar.sh
+alias mvn_create=bash\ ~/bash_script/mvn_create.sh
 alias geny=sudo\ /opt/genymobile/genymotion/genymotion
 alias pandoc_track=pandoc\ --track-changes\=all
 ## ------------------------------------- 

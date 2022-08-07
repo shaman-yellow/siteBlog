@@ -35,9 +35,13 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+" ## ---------------------------------------------------------------------- 
 vnoremap <C-y> "+y
 nnoremap <C-p> "+p
 inoremap ;t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
+inoremap ;q <Esc>F<Space>xgi
+inoremap ;u <Esc>b~gi
+" ## ------------------------------------- 
 noremap <f2> :NERDTreeToggle<cr>
 nnoremap ;v :tabe ~/.vimrc<CR>
 nnoremap ;b :tabe ~/.bashrc<CR>
@@ -46,6 +50,12 @@ nnoremap ;w :w
 nnoremap ;s :source ~/.vimrc
 nnoremap ;f :tabe ~/.vim/after/ftplugin/
 nnoremap ;sf :source ~/.vim/after/ftplugin/
+nnoremap <Space>j 6j
+nnoremap <Space>k 6k
+nnoremap <Space>i :NERDTreeFind
+nnoremap <Space>o :NERDTreeFocus
+nnoremap <Space>w <C-w><C-w>
+nnoremap tg gT
 " ## ---------------------------------------------------------------------- 
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {'Rscript': ['styler']}

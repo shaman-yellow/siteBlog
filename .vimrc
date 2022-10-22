@@ -7,25 +7,6 @@ iabbrev ctm ## -------------------------------------
 iabbrev cts ## ------------------
 iabbrev ctn ##
 " ## ---------------------------------------------------------------------- 
-" Rmarkdown
-iabbrev ctr ## ========== Run block ==========
-iabbrev ctas ## ^start_________________________
-iabbrev ctae ## $start_________________________
-iabbrev stf ## @figure
-iabbrev fgr \@ref(fig:)<Left>
-iabbrev mdi ## [introduction]
-iabbrev msp &emsp;&emsp;
-iabbrev nsp &ensp;&ensp;
-iabbrev mdc [citation]:
-iabbrev ffgr {@fig:}{nolink=True}<Esc>4ba
-iabbrev ttbl {@tbl:}{nolink=True}<ESC>4ba
-iabbrev doci []{.insertion}<Esc>bba
-iabbrev docd []{.deletion}<Esc>bba
-iabbrev mdcols ::: columns :::<Esc>bi<CR><CR><Esc>k
-iabbrev mdcol :::: column ::::<Esc>bi<CR><CR><Esc>k
-iabbrev tt treatment<ESC>
-iabbrev txtc \textcolor{}{}<Esc>b
-" ## ---------------------------------------------------------------------- 
 " ## math
 iabbrev mmbe \begin{aligned}
 iabbrev mmen \end{aligned}
@@ -41,6 +22,9 @@ nnoremap <C-p> "+p
 inoremap ;t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 inoremap ;q <Esc>F<Space>xgi
 inoremap ;u <Esc>b~gi
+inoremap ;b  <Esc>dF_s_
+inoremap ;. <Esc>bi.<Esc>ea
+inoremap ;x <Esc>bxgi
 " ## ------------------------------------- 
 noremap <f2> :NERDTreeToggle<cr>
 nnoremap ;v :tabe ~/.vimrc<CR>
@@ -52,11 +36,15 @@ nnoremap ;f :tabe ~/.vim/after/ftplugin/
 nnoremap ;sf :source ~/.vim/after/ftplugin/
 nnoremap <Space>j 6j
 nnoremap <Space>k 6k
-nnoremap <Space>i :NERDTreeFind
+nnoremap <Space>gi :NERDTreeFind<CR><C-w><C-w>gi
+nnoremap <Space>i :NERDTreeFind<CR>
 nnoremap <Space>o :NERDTreeFocus
 nnoremap <Space>w <C-w><C-w>
 nnoremap tg gT
+nnoremap ;e :tabnew<CR>:Startify<CR>
+nnoremap ;n :nohlsearch<CR>
 " ## ---------------------------------------------------------------------- 
+set linespace=10
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {'Rscript': ['styler']}
 set wildmode=longest,list
@@ -66,7 +54,7 @@ set path+=~/utils.tool/**
 set path+=~/.vim/after/ftplugin/**
 set completeopt-=preview
 set spell
-set hlsearch
+" set hlsearch
 set ts=2
 set softtabstop=2
 set shiftwidth=2

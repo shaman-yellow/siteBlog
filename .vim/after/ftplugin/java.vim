@@ -128,7 +128,7 @@ let g:obj_type = {
 " ## ---------------------------------------------------------------------- 
 function! Iabbrev_echo()
   let l:str = g:str_ARGs
-  let l:fun = "FunEx" . matchstr(str, "2.")
+  let l:fun = "FunEx" . matchstr(str, "[0-9].")
   let l:fun = g:iabbrev_funex[l:fun]
   let l:res = eval(l:fun . "(str)")
   return l:res
@@ -143,7 +143,7 @@ function! Fast_print()
 
   let l:arg1 = g:str_ARGs_1
   let l:arg2 = g:str_ARGs_2
-  let l:fun = "Fun" . matchstr(arg1, "2.")
+  let l:fun = "Fun" . matchstr(arg1, "[0-9].")
   let l:fun = g:iabbrev_fun[l:fun]
   let l:res = eval(l:fun . "(arg1, arg2)")
 

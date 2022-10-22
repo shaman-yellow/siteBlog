@@ -1,8 +1,10 @@
 ## ---------------------------------------------------------------------- 
+## git@github.com:Cao-lab-zcmu/MCnebula2.git
 ## ---------------------------------------------------------------------- 
 set -o vi
 ## ------------------------------------- 
 ## alias
+alias ccc=cd\ ~/legend/story/re_rise
 alias cvim=cd\ ~/.vim/after/ftplugin
 alias gett=xsel\ \-b\ \-i
 alias cmc=cd\ ~/MCnebula/R

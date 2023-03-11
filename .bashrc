@@ -1,9 +1,22 @@
-## ---------------------------------------------------------------------- 
+article_mcnebula2=/mnt/data/wizard/Documents/article/MCnebula2
+
+## https://tableconvert.com API key: x5fiZX6L1yJtmBS1A6LIImVBorjd7c5f
 ## git@github.com:Cao-lab-zcmu/MCnebula2.git
-## ---------------------------------------------------------------------- 
+# https://cao-lab-zcmu.github.io/MCnebula2/
+# qqmail empower ozathvqzvmyfeiid
 set -o vi
-## ------------------------------------- 
 ## alias
+relive() {
+  rm -r ~/MCnebula2/content/en/*/*/{index_files,index.html,index.md}
+}
+
+bash ~/bash_script/wallpaper.sh
+
+alias t=cd\ /mnt/data/wizard/Documents/article/thesis
+alias h=cd\ ~/outline/mc.test
+alias tmp=cd\ ~/operation/tmp
+alias o=xdg-open
+alias lh=ls\ --size\ -h
 alias ccc=cd\ ~/legend/story/re_rise
 alias cvim=cd\ ~/.vim/after/ftplugin
 alias gett=xsel\ \-b\ \-i
@@ -27,21 +40,17 @@ alias unjar=bash\ ~/bash_script/unjar.sh
 alias mvn_create=bash\ ~/bash_script/mvn_create.sh
 alias geny=sudo\ /opt/genymobile/genymotion/genymotion
 alias pandoc_track=pandoc\ --track-changes\=all
-## ------------------------------------- 
 alias ncm2flac=python3\ ~/Music/pyNCMDUMP/ncmdump.py
 ## https://cao-lab-zcmu.github.io/VIgnette/
-## ------------------------------------- 
-## ---------------------------------------------------------------------- 
 # export PATH=$PATH:/opt/genymobile/genymotion/
 export JAVA_HOME=/usr/lib/jvm/default-java
 export PATH=$JAVA_HOME/bin:$PATH
 export INSTALL4J_JAVA_HOME=/usr/lib/jvm/java-1.18.0-openjdk-amd64
-## ---------------------------------------------------------------------- 
 # export http_proxy=http://127.0.0.1:8889
 # export https_proxy=http://127.0.0.1:8889
 # export all_proxy=socks5://127.0.0.1:1089
-## ---------------------------------------------------------------------- 
 mymail="shaman.yellow@foxmail.com"
+office="202011114011074@zcmu.edu.cn"
 github_pass=shaman.wizard000
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -162,4 +171,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source "$HOME/.fast_cd/fast_cd_menu.sh"
+# source "$HOME/.fast_cd/fast_cd_menu.sh"

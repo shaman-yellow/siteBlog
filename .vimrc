@@ -1,56 +1,18 @@
-" ## ------------------------------------- 
-" ## ------------------------------------- 
-" ## ------------------------------------- 
-" ## ---------------------------------------------------------------------- 
-iabbrev ctl ## ----------------------------------------------------------------------
-iabbrev ctm ## -------------------------------------
-iabbrev cts ## ------------------
-iabbrev ctn ##
-" ## ---------------------------------------------------------------------- 
-" ## math
-iabbrev mmbe \begin{aligned}
-iabbrev mmen \end{aligned}
-iabbrev mm= &=
-" ## ---------------------------------------------------------------------- 
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-" ## ---------------------------------------------------------------------- 
-vnoremap <C-y> "+y
-nnoremap <C-p> "+p
-inoremap ;t <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
-inoremap ;q <Esc>F<Space>xgi
-inoremap ;u <Esc>b~gi
-inoremap ;b  <Esc>dF_s_
-inoremap ;. <Esc>bi.<Esc>ea
-inoremap ;x <Esc>bxgi
-" ## ------------------------------------- 
-noremap <f2> :NERDTreeToggle<cr>
-nnoremap ;v :tabe ~/.vimrc<CR>
-nnoremap ;b :tabe ~/.bashrc<CR>
-nnoremap ;q :q<CR>
-nnoremap ;w :w
-nnoremap ;s :source ~/.vimrc
-nnoremap ;f :tabe ~/.vim/after/ftplugin/
-nnoremap ;sf :source ~/.vim/after/ftplugin/
-nnoremap <Space>j 6j
-nnoremap <Space>k 6k
-nnoremap <Space>gi :NERDTreeFind<CR><C-w><C-w>gi
-nnoremap <Space>i :NERDTreeFind<CR>
-nnoremap <Space>o :NERDTreeFocus
-nnoremap <Space>w <C-w><C-w>
-nnoremap tg gT
-nnoremap ;e :tabnew<CR>:Startify<CR>
-nnoremap ;n :nohlsearch<CR>
-" ## ---------------------------------------------------------------------- 
+source ~/.vim/after/ftplugin/.vimrc
+
+set vb t_vb=
+au GuiEnter * set t_vb=
+
+set mouse =
+let g:translator_outputype='popup'
+let g:translator_channel='youdao'
 set linespace=10
 let g:ale_sign_column_always = 1
 let g:ale_fixers = {'Rscript': ['styler']}
 set wildmode=longest,list
 set path+=~/outline/**
-set path+=~/MCnebula/**
-set path+=~/utils.tool/**
+set path+=~/MCnebula2/**
+" set path+=~/utils.tool/**
 set path+=~/.vim/after/ftplugin/**
 set completeopt-=preview
 set spell
@@ -64,7 +26,6 @@ set smartindent
 " autocmd FileType r setlocal indentexpr=RIndent_GVF(v:lnum)
 autocmd FileType python setlocal et sta sw=4 sts=4
 set scrolloff=5
-set nofoldenable
 set nu
 syntax on
 set cursorline
@@ -83,6 +44,7 @@ let NERDTreeShowBookmarks=1
 let NERDTreeShowHidden=1
 let NERDCompactSexyComs=1      
 let g:NERDDefaultAlign='left' 
+let R_assign = 2
 " autocmd vimenter * NERDTree
 
 " ## ---------------------------------------------------------------------- 
@@ -99,13 +61,16 @@ call vundle#begin()
 	Plugin 'whatyouhide/vim-gotham'
 	Plugin 'godlygeek/tabular'
 	Plugin 'plasticboy/vim-markdown'
-	" Plugin 'suan/vim-instant-markdown'
 	Plugin 'lervag/vimtex'
 	Plugin 'iamcco/markdown-preview.nvim'
 	Plugin 'scrooloose/nerdcommenter'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'dense-analysis/ale'
   Plugin 'mikelue/vim-maven-plugin'
+  Plugin 'jalvesaq/Nvim-R'
+  Plugin 'tpope/vim-unimpaired'
+  Plugin 'bujnlc8/vim-translator'
+  " Plugin 'pseewald/vim-anyfold'
 call vundle#end()
 filetype indent on
 " ## ---------------------------------------------------------------------- 
@@ -158,7 +123,6 @@ endif
 "set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden		" Hide buffers when they are abandoned
-"set mouse=a		" Enable mouse usage (all modes)
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -218,4 +182,32 @@ function! Rename(name, bang)
 	endif
 
 	return l:status
+endfunction
+
+
+nnoremap <C-n> :call Insert_line()<CR>i
+function! Insert_line()
+  let this = getline('.')
+  if matchstrpos(this, "^\\s*$")[1] >= 0
+    let this = 0
+  else
+    let this = 1
+  endif
+  let next = getline(line('.') + 1)
+  if matchstrpos(next, "^\\s*$")[1] >= 0
+    let next = 0
+  else
+    let next = 1
+  endif
+  if this == 1 && l:next == 1
+    execute "normal 3o"
+    execute "normal k"
+  elseif this == 1 && l:next == 0
+    execute "normal 2o"
+  elseif this == 0 && l:next == 0
+    execute "normal o"
+  elseif this == 0 && l:next == 1
+    execute "normal 2o"
+    execute "normal k"
+  endif
 endfunction

@@ -47,4 +47,9 @@ function! FunEx_md_title()
   return l:res
 endfunction
 
+inoremap ;r <C-R>=FunEx_roxygen()<CR>
+function! FunEx_roxygen()
+  let l:res = "#' "
+  return l:res
+endfunction
 

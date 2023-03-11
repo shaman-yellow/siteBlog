@@ -10,7 +10,9 @@ let g:iabbrev_fun = {
       \ 'Fun2s': 'Fun_show_object',
       \ 'Fun3c': 'Roxy_class',
       \ 'Fun3m': 'Roxy_method',
-      \ 'Fun3g': 'Roxy_getter'
+      \ 'Fun3g': 'Roxy_getter',
+      \ 'Fun3n': 'Roxy_null',
+      \ 'Fun4s': 'Section_new'
       \ }
 
 function! Fun_new_normal(arg1, arg2)
@@ -185,3 +187,14 @@ function! Fun_show_object(arg1, arg2)
   return res
 endfunction
 
+function! Section_new(arg1, arg2)
+  let l:arg1 = substitute(a:arg1, "[0-9].*", "", "")
+  let l:arg2 = substitute(a:arg2, "d", ".", "g")
+  let l:res = "s" . l:arg2 . ' <- new_section2(' . "\n" .
+        \ "c(),\n" .
+        \ "rblock({\n" .
+        \ "\n" .
+        \ "})\n" .
+        \ ")"
+  return res
+endfunction

@@ -1,4 +1,6 @@
 " Rmarkdown
+syn sync fromstart
+
 iabbrev ctr ## ========== Run block ==========
 iabbrev ctas ## ^start_________________________
 iabbrev ctae ## $start_________________________
@@ -20,17 +22,45 @@ iabbrev incc \includegraphics[height=67mm]{}<Esc>
 iabbrev inccn \includegraphics{}<Esc>
 iabbrev rr \flushright
 iabbrev ll \flushleft
-nnoremap ;b :RSend bookdown::render_book("index.Rmd")
+
+iabbrev htimg <center><img src="" width="100%"></center><esc>^f"
+
+nnoremap ;b :RSend custom_render("index.Rmd")
 inoremap ;t1 # {-}<Esc>bi<Space><esc>i
 inoremap ;t2 ## {-}<Esc>bi<Space><esc>i
 inoremap ;t3 ## {-}<Esc>bi<Space><esc>i
+inoremap ;t <C-R>=strftime("%Y-%m-%dT%H:%M:%S+00:00")<CR>
+
+iabbrev rfg \@ref(fig:)<esc>F<space>xf)
+iabbrev rtb \@ref(tab:)<esc>F<space>xf)
+
+iabbrev lds <!---BLOCK_LANDSCAPE_START---><cr><cr><!---BLOCK_LANDSCAPE_STOP---><esc>k
+
+" temp function
+
+iabbrev fps - 图\@ref(fig:)注：<esc>bb
+
+noremap <C-f> :call TempFix()<cr>
+function! TempFix()
+  s/ *"*'* *特征 *'*"* */'Features'/g
+  s/子星云/Child-Nebulae/g
+  s/父星云|母星云/Parent-Nebula/g
+  s/星云指数|星云索引|星云目录/Nebula-Index/g
+  s/Stardust类|星尘类/Stardust Classes/g
+  s/  $//g
+endfunction
+
+" temp function end
 
 iabbrev vv <-
 iabbrev pp %>%
 iabbrev ii %in%
 
 inoremap `t ```{r tab.id = "table<esc>:call TabNum()<cr>a<C-r>=g:rtab<cr>", ft.keepnext = T}<cr><cr>```<esc>ka
-inoremap `f ```{r fig<esc>:call FigNum()<cr>a<C-r>=g:rfig<cr>, fig.cap = ""}<cr><cr>```<esc>ka
+inoremap `f ```{r fig<esc>:call FigNum()<cr>a<C-r>=g:rfig<cr>, echo = F, fig.cap = ""}<cr><cr>```<esc>ka
+inoremap `h ```{r eval = T, echo = F, results = "asis"}<cr><cr>```<esc>ka
+inoremap `` ```{r}<cr><cr>```<esc>ka
+inoremap `i ``<esc>i
 
 function! FigNum()
   if exists("g:rfig") == 0

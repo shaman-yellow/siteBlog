@@ -1,4 +1,5 @@
 article_mcnebula2=/mnt/data/wizard/Documents/article/MCnebula2
+docs=~/MCnebula2/content/en/docs
 
 ## https://tableconvert.com API key: x5fiZX6L1yJtmBS1A6LIImVBorjd7c5f
 ## git@github.com:Cao-lab-zcmu/MCnebula2.git
@@ -12,6 +13,10 @@ relive() {
 
 bash ~/bash_script/wallpaper.sh
 
+alias u=cd\ ~/utils.tool/R
+alias cd.=cd\ ..
+alias cd..=cd\ ../..
+alias cd...=cd\ ../../..
 alias t=cd\ /mnt/data/wizard/Documents/article/thesis
 alias h=cd\ ~/outline/mc.test
 alias tmp=cd\ ~/operation/tmp

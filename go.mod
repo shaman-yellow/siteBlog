@@ -1,4 +1,4 @@
-module github.com/google/docsy-example
+module github.com/shaman-yellow/siteBlog
 
 go 1.12
 

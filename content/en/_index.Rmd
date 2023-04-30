@@ -1,0 +1,12 @@
+---
+title: "Documentation of Shaman Yellow"
+description: ""
+lead: "Personal website that records notes, essays and novels."
+date: "2023 Apr 30 13:57:48 | Sun"
+lastmod: "2023 Apr 30 13:57:48 | Sun"
+draft: false
+images: []
+---
+
+
+

@@ -45,19 +45,6 @@
   weight = 20
 
 [[main]]
-  name = "Get Started"
-  weight = 30
-  identifier = "get-started"
-  url = "/docs/prologue/introduction/"
-
-[[main]]
-  name = "Quick Start"
-  weight = 40
-  identifier = "quick_start"
-  url = "/docs/prologue/quick_start/"
-  parent = "get-started"
-
-[[main]]
   name = "Contact"
   weight = 100
   identifier = "contact"
@@ -68,13 +55,6 @@
   weight = 120
   identifier = "about"
   url = "/about/"
-
-[[main]]
-  name = "Tutorial"
-  weight = 50
-  identifier = "tutorial"
-  url = "/docs/workflow/basic_workflow/"
-  parent = "get-started"
 
 [[social]]
   name = "GitHub"

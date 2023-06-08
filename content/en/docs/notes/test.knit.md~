@@ -1,0 +1,238 @@
+---
+title: Bioinformatics notes
+bibliography: '/home/echo/R/x86_64-pc-linux-gnu-library/4.2/MCnebula2/extdata/library.bib'
+csl: '/home/echo/R/x86_64-pc-linux-gnu-library/4.2/MCnebula2/extdata/vancouver.csl'
+reference-section-title: "Reference"
+link-citations: true
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 3
+    # toc_float: true
+---
+
+
+
+
+## Prologue
+
+...
+
+## Sequence database
+
+- [GenBank](http://www.ncbi.nlm.nih.gov/)
+- [EMBL-Bank](http://www.ebi.ac.uk/)
+- [DDBJ](http://www.ddbj.nig.ac.jp/)
+
+
+
+<figure>
+<center><img src="/docs/notes//figs/fig1.svg"></center>
+<center><figcaption>INSDC</figcaption></center>
+</figure>
+
+
+
+<figure>
+<center><img src="/docs/notes//figs/fig2.svg"></center>
+<center><figcaption>Entrez system</figcaption></center>
+</figure>
+
+### GenBank
+
+- Genome DNA Database
+    - STSs 序列标签位点
+    - GSSs 基因组勘测序列
+    - HTGS 高通量基因组序列
+
+- RNA level
+    - cDNA Database
+    - ESTs 表达序列标签
+    - UniGene
+
+### RefSeq
+
+为每一个基因的正常（无突变）传录本和正常的蛋白质产物提供最有代表性的序列。
+
+### CLI Tool: EDirect
+
+<https://www.ncbi.nlm.nih.gov/books/NBK179288/>
+
+
+```bash
+esearch -db pubmed -query "pevsner j AND gnaq" | efetch -format docsum
+```
+
+### BioMart
+
+...
+
+## Dual Sequence Matching
+
+### Concept
+
+- 同源性
+- 空位
+    - 起始空位
+    - 延伸空位
+- ...
+
+### Margaret Dayhoff
+
+Margaret Dayhoff (1966, 1978)
+
+1. PAM: 可接受点突变
+2. f: 氨基酸出现的频率
+3. 氨基酸的相对突变率
+4. 进化距离为1PAM的突变概率矩阵
+5. PAM250和其他PAM矩阵
+6. 相关优势值矩阵
+7. 对数优势值矩阵
+
+### Algorithms
+
+#### Global
+
+- Needleman-Wunsch (1970)
+
+#### Local
+
+- Smith-Waterman (1981)
+- BLAST (1990)
+- FASTA (1988)
+
+### Signifiant
+
+E-value...
+
+## BLAST
+
+### Program
+
+- BLASTP: protein -> protein
+- BLASTN: DNA -> DNA
+- BLASTX: DNA -> protein
+- TBLASTN: protein -> DNA
+- TBLASTX: DNA -> DNA
+
+### Parameters
+
+- Query, e.g., FASTA
+- Limit by Entrez Query, ...
+- Max target sequence, ...
+- Short queries, 短查询序列
+- Expected thereshold, E-value
+- Word size, ...
+- Max mathes in a query range, ...
+- Matrix, ...
+- Gap costs, 空位成本
+- Compositional adjustment, adjust E-value.
+- Masking, 避免匹配到低复杂度或重复的片段
+
+### BLAST software
+
+<http://blast.ncbi.nlm.nih.gov/>
+
+<https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html#downloadblastdata>
+
+## Advance database search
+
+### Spetial BLAST
+
+...
+
+### Search for distantly related 'proteins'
+
+#### 位置特异性迭代BLAST (PSI-BLAST)
+
+当一个基因组被完整测序，需要寻找预测蛋白的同源物，可以用到PSI-BLAST（NCBI提供）。
+
+- 查询序列搜索，例如BLASTP。
+- 利用搜索结果创建多序列比对，基于此构建专门的、个体化的搜索矩阵。位置特异性打分矩阵（PSSM）
+- PSSM用于再次搜索。
+- 显著性评估。
+- 迭代搜索，一般迭代5次。
+
+污染问题：无关序列的虚假扩增。措施：
+
+- 过滤算法。
+- 调低入选阈值，如E-value
+- 人工检查可疑序列。
+
+#### 反向位置特异BLAST（RPS-BLAST）
+
+将查询蛋白在PSSM数据库中搜索。
+
+#### 结构域增强的查找时间加速的BLAST（DELTA-BLAST）
+
+DELTA-BLAST用RPS-BLAST搜索预先计算好的PSSM库，用新得到的PSSM来搜索蛋白质数据库。
+
+#### 模式识别BLASR（PHI-BLAST)
+
+...
+
+#### Profile hidden Markov models (HMMs)
+
+生成用于识别远源序列相似度的位置特异性打分系统，类似于PSSMs。
+
+HMMER sortware: <http://hmmer.janelia.org/>
+
+### BLAST-like fast search for genomic 'DNA'
+
+基因组DNA搜索的特殊需求：
+
+- 基因组DNA包含外显子和内含子。能找到外显子。
+- 考虑测序的引入错误。
+- 基因组DNA比较。
+- DNA序列的微小差异。
+
+#### PatternHunter
+
+提高灵敏度和速度。
+
+#### BLASTZ
+
+物种基因组比对。
+
+#### Enredo, Pecan
+
+#### MegaBLAST, 不连续MegaBLAST
+
+NCBI的优化用于快速比对长DNA查询序列的工具。
+
+#### BLAT
+
+#### LAGAN
+
+基因组DNA成对比对的方法。
+
+#### SSAHA2
+
+二代测序读段应用到参考基因组上。
+
+### Comparison of NGS read segments with the reference genome
+
+#### 基于哈希表的比对
+
+MAQ, ELANDv2 (Illumina), SSAHA2
+
+#### Burrows-Wheeler (BWT)
+
+对高考基因组进行变换和压缩，提高检索速度。
+
+## Multiple Sequence Aligment (MSA)
+
+使用多宠序列比对：
+
+- 蛋白质或基因与一大组蛋白质相关。
+- 蛋白质家族有远源成员。
+- 查看数据库搜索结果时，显示保守的残基与模体。
+- 预测有害突变。
+- 种群数据研究。
+- 基因组测序时，定义所有基因产物所属的蛋白质家族。
+- 生成系统发育树。
+- ...
+
+
+
+

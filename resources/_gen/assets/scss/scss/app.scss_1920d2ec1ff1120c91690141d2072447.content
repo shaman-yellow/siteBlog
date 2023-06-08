@@ -9764,18 +9764,7 @@ body {
 .content img {
   max-width: 100%; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin: 2rem 0 1rem; }
 
 .offcanvas-header {
@@ -9795,18 +9784,7 @@ body.docs {
     /*
     padding-top: 4rem !important;
     */ }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
+  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-bottom: 1.125rem; } }
 
 .home h1, .home .h1 {
@@ -11569,15 +11547,45 @@ button#doks-versions {
     .social-link {
       padding-right: 0.5rem;
       padding-left: 0.5rem; } }
+body {
+  counter-reset: section; }
+
+h2, .h2 {
+  counter-reset: sub-section; }
+
+h3, .h3 {
+  counter-reset: composite; }
+
+h4, .h4 {
+  counter-reset: detail; }
+
+h2:before, .h2:before {
+  padding-top: 5rem;
+  counter-increment: section;
+  content: counter(section) " "; }
+
+h3:before, .h3:before {
+  padding-top: 5rem;
+  counter-increment: sub-section;
+  content: counter(section) "." counter(sub-section) " "; }
+
+h4:before, .h4:before {
+  padding-top: 5rem;
+  counter-increment: composite;
+  content: counter(section) "." counter(sub-section) "." counter(composite) " "; }
+
+h5:before, .h5:before {
+  padding-top: 5rem;
+  counter-increment: detail;
+  content: counter(section) "." counter(sub-section) "." counter(composite) "." counter(detail) " "; }
+
 .docs-content > h2[id]::before, .docs-content > [id].h2::before,
 .docs-content > h3[id]::before,
 .docs-content > [id].h3::before,
 .docs-content > h4[id]::before,
 .docs-content > [id].h4::before {
-  display: block;
-  height: 6rem;
-  margin-top: -6rem;
-  content: ""; }
+  display: inline-block;
+  height: 0rem; }
 
 .anchor {
   visibility: hidden; }

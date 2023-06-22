@@ -398,4 +398,447 @@ FASTA格式
 - MEGA：<http://www.megasoftware.net/>
 - PHYLIP：<http://evolution.genetics.washington.edu/phylip/general.html>
 
+## DNA: eukaryotic chromosomes
+
+### General characteristics of the genome and chromosomes
+
+#### C值矛盾：为什么真核生物的基因组大小差异巨大。与生物的复杂程度没有明显的相关性。
+
+#### 真核生物基因组易染色体形式组织
+
+主要特征：端粒和着丝粒。
+
+#### 基因组浏览器 
+
+- NCBI Map Viewer
+- Ensembl
+- UCSC
+
+#### BioMart and BiomaRt
+
+……
+
+#### ENCODE
+
+DNA元件百科全书。
+
+#### ENCODE review: The C-value paradox and the functional definition
+
+功能定义方式：
+
+- 进化选择效应
+- 因果作用
+- 存在事件
+
+### DNA Repeat Fragments
+
+#### 真核生物基因组包含非编码和重复DNA序列
+
+#### 散在重复序列
+
+- 长末端重复转座子
+- 长散在元件
+- 短散在元件
+- DNA转座子
+
+#### 简单序列重复
+
+#### 串联重复序列区块
+
+### Gene content of eukaryotic chromosomes
+
+#### 基因的定义
+
+位于特定染色体位置并编码一种蛋白质的一个遗传信息单位。
+
+### Regulatory regions of the eukaryotic genome
+
+### Comparison of eukaryotic DNA
+
+### Changes in chromosomal DNA
+
+#### 染色体的动态性：全基因复制
+
+#### 个体基因组的染色体变异
+
+#### 结构变异
+
+- 倒置
+- 复制
+- 缺失
+- 插入
+
+#### 形成基因家族的模型
+
+- 趋异进化
+- 协同进化
+- 诞生和死亡进化
+
+#### 个体基因组的染色体变异：SNPs
+
+SNPs（单核苷酸多态性）
+
+## Next generation sequencing
+
+### DNA sequence technology
+
+#### Sanger 测序
+
+> 仪器：<http://www.3700.com>
+
+#### 二代测序技术
+
+- 循环可逆终止：Illumina <http://www.illumina.com>
+- 焦磷酸测序
+- 连接法测序：ABI SOLiD 色彩空间
+- 半导体测序：利用pH值进行基因组测序
+- 太平洋生物科学：长读段单分子测序
+- Complete Genomics：自拼接DNA纳米阵列
+
+### Analysis of NGS
+
+#### 二代测序数据分析概述
+
+基本工作流：
+
+- 实验室工作
+- 二代测序
+- 质量评价
+- 比对到参考基因组
+- 变异识别
+- 注释
+- 可视化
+- 优化
+- 存储
+
+GATK 流程：……
+
+#### 实验设计和样品准备
+
+#### 从生成的测序数据到FASTQ
+
+> FASTQ <http://maq.sourceforge.net/fastq.shtml>
+
+- Sanger FASTQ
+- Illumina FASTQ
+- Illumina 1.3+ FASTQ
+
+@表示开头。G、A、T、C。N代表不确定。+ 代表第三行。
+
+#### 发现和观察FASTQ文件
+
+工具SRA Toolkit：<http://www.ncbi.nlm.nih.gov/sra/>
+
+（fastq-dump 命令）
+
+- SRA 提交入口
+- SRP 学习入口（项目元数据）
+- SRX 实验入口（元数据）
+- SRS 样品入口
+- SRZ 历史SRA分析入口
+- SRR SRA运行入口
+
+#### FASTQ数据的质量评估
+
+工具：
+
+- FastQC <http://www.bioinformatics.babraham.ac.uk/projects/fastqc/>
+- ShortRead
+
+#### FASTG 比FASTQ 包含信息更多的一种格式
+
+#### 基因拼接
+
+当检测一个之前没有参考序列的物种时，需要de novo拼接
+
+拼接工具：
+
+……
+
+#### 基因拼接性能的比赛和关键评估
+
+……
+
+#### 序列比对（比对到参考基因座）
+
+#### 重复DNA的比对
+
+#### SAM/BAM的格式与SAMtools
+
+SAM/BAM 是一种格式，存储来自二代测序的序列在比对后的结果。
+
+SAMtools 是一个软件库，用来分析SAM/BAM输入文件中的比对结果
+
+#### 计算读段深度
+
+如果对文库进行频繁的测序，测序深度和统计效力都会增加……
+
+#### 查找和浏览BAM/SAM文件
+
+#### 压缩后的比对文件：CRAM文件
+
+#### 变异识别：单核苷酸变异和插入、缺失
+
+#### 突变查找：结构突变
+
+- 删除
+- 新序列插入
+- 移动元件插入
+- 倒位
+- 散在重复
+- 串联重复
+
+#### 总结变异——VCF格式和VCFtools
+
+> VCFtools <http://vcftools.sourceforge.net/>
+
+#### 查找和浏览VCF文件
+
+ENA网站
+
+#### 二代测序数据的可视化和列表化
+
+> 瑞士军刀 BEDtools：<https://github.com/arq5x/bedtools2/>
+
+#### 解释突变的生物学意义
+
+各类工具：……
+
+#### 将数据存储在存储库中
+
+### Specific application
+
+- RNA 测序
+- 染色质免疫共沉淀测序，用于测量蛋白质-DNA相互作用
+- 微小RNA（miRNA），长度短小的非编码RNA，是各种通路中的必须调节因子。
+- 甲基化测序，表征在全基因组的胞嘧啶残基被甲基化…… 
+- DNA 酶测序，结合甲醛辅助的调节元件分离，允许核小体缺失的基因组区域测序……
+
+## Bioinformatic tools for RNA analysis
+
+### Non-coding RNA
+
+- tRNA，转运RNA，对应于遗传密码中特定的20个氨基酸。
+- rRNA，核糖体RNA构成了核糖体的结构和功能，由rDNA转录。
+- snRNA，小核RNA，位于细胞核内，由具有功能的RNA家族组成。
+- snoRNA，小核仁RNA，在真核生物中，在核仁中促进核糖体合成。
+- microRNA，小RNA，通过抑制从mRNA到蛋白的翻译或促进mRNA降解二下调蛋白的表达。miRbase：<http://www.mirbase.org/>
+- siRNA，短干扰RNA。
+- lncRNA，长非编码RNA，
+
+#### Rfam 数据库
+
+<http://www.sanger.ac.uk/resources/database/>
+
+<http://http://rfam.janelia.org/>
+
+### mRNA Introduction
+
+#### mRNA：基因表达研究的主体
+
+调控：
+
+- 转录
+- RNA加工
+- RNA输出
+- RNA监控
+
+#### 低通量和高通量技术研究mRNA
+
+低通量：Northern印迹，定量RT-PCR
+
+#### cDNA文库中的基因表达分析
+
+cDNA文库的测序可以检测RNA转录本（成熟的mRNA）的位置和表达量。
+
+#### 全长cDNA计划
+
+- 鼠功能注释（FANTOM）项目
+- H-Invitational数据库
+- 哺乳动物基因收集（MGC）
+- KIAA
+
+#### BodyMap2 与 GTEx：测定全身各处的基因表达
+
+### Microarray and RNA-seq
+
+在微阵列中，RNA或者mRNA常常被转录为cDNA（或者cRNA），做荧光或放射性标记后在阵列上进行杂交……
+
+### Interpret of RNA analysis
+
+#### DNA、mRNA与蛋白质水平之间的关系
+
+#### 转录的普遍性
+
+#### eQTLs：通过结合RNA-seq和DNA-seq理解基因表达的遗传变异基础
+
+eQTLs：表达数量性状位点……
+
+## Gene expression: microarray and RNA-seq data analysis
+
+### GEO2R
+
+#### 使用GEO2R执行系列R脚本
+
+#### 使用GEO2R来件定受调控的转录本在染色体上的位置
+
+> 在15个考前的转录本中发现10个都来自21号染色体的情况在统计学意义上是否显著：
+> `fisher.test()`
+
+#### 使用GEO2R对数据归一化
+
+- MAS5
+- RMA (R package `affy`)
+- 全局和局部归一化 (R package `SNOMAD`)
+- ...
+
+#### ...
+
+### commercial tools: Partek 
+
+...
+
+### R and BioConductor
+
+#### 利用RMA工具读取CEL文件并完成归一化
+
+```{r, echo = T}
+data <- affy::ReadAffy()
+eset <- affy::rma(data)
+```
+
+#### limma
+
+### Microarray data analysis: descriptive statistical methods
+
+#### 芯片数据的层级聚类分析
+
+#### K-means聚类
+
+#### 比较多维度变换于主成分分析
+
+#### 聚类策略：自组织映射
+
+#### 基因及样本的分类
+
+### RNA-seq
+
+#### TopHat 和 CuffLinks 的样本分析规范
+
+#### ……
+
+## Protein Analysis and Proteomics 
+
+NCBI非冗余蛋白质数据库UniProt：
+
+- UniProtKB，蛋白质知识库
+- UniRef 隐藏冗余序列的序列聚类集合
+- UniMES 宏基因组学和环境序列
+- UniParc 文档
+
+```{r, echo = T}
+ensembl <- biomaRt::useMart("ensembl")
+ensembl <- biomaRt::useDataset("hsapiens_gene_ensembl", mart = ensembl)
+# data <- biomaRt::getBM(attributes = , filters = , values = , mart = ensembl)
+# biomaRt::listFilters(ensembl)
+# biomaRt::listAttributes(ensembl)
+```
+
+### Identification of proteins
+
+#### 直接蛋白质测序
+
+#### 凝胶电泳
+
+#### 质谱
+
+### The 4 aspect of proteins
+
+- 蛋白质的模块性质（结构域和模体）
+    - 结构域是蛋白质中能折叠成特定三维结构的一段区域
+    - 模体是蛋白质中短的、保守的区域
+- 蛋白质的物理性质
+    - 激酶介导磷酸酯部分从三磷酸腺苷到丝氨酸、苏氨酸、或酪氨酸残基上的受体位点的共价键连接时，会发生可逆的蛋白磷酸化。
+    - 跨膜区域的蛋白质组学研究……
+
+> 基因本体协会：GO……分子功能，生物过程，细胞组分
+
+- 蛋白质的定位
+- 蛋白质功能
+
+## Structure of proteins
+
+### Principle of structure 
+
+- 一级结构，初级氨基酸序列（查看工具，Deepview，SwissModel）
+- 二级结构，疏水性氨基酸和亲水性氨基酸的排列方向
+- 三级结构，蛋白质的折叠
+
+### Protein Data Bank (PDB)
+
+<http://www.ebi.ac.uk/pdbe/>
+
+- SCOP 数据库，蛋白质结构分类数据库
+- CATH 数据库，蛋白质结构域的层级分类系统
+
+### Intrinsically disordered proteins
+
+没有稳定三维结构的蛋白质
+
+## Functional genomics
+
+### Introduction
+
+功能基因组学是对DNA（包括基因和非基因元件）、核酸以及由DNA编码的蛋白质产物的功能进行的全基因组范围的研究。
+
+研究范围：
+
+- 自然变异
+- 功能失常
+
+#### 基因型与表型之间的关系
+
+### Eight Model organism
+
+- 大肠杆菌
+- 酿酒酵母
+- 拟南芥
+- 秀丽隐杆线虫
+- 黑腹果蝇
+- 斑马鱼
+- 小鼠
+- 智人
+
+### Forward and Reverse Genetics
+
+#### 反向遗传学：从基因到表型
+
+- 基因敲除（-/-）
+- 随机插入诱变
+- 破坏RNA导致基因沉默
+
+#### 正向遗传学：从表型到基因
+
+- 化学诱变
+
+### Functional Genomics and central principles
+
+### Research on Functional Genomics by Proteomics
+
+#### 蛋白质-蛋白质互作
+
+检测方法：
+
+- 免疫共沉淀
+- 亲和层析
+- 化学物质或紫外辐射交联法
+- 表面等离子体共振
+- 平衡透析和过滤结合测定
+- 荧光共振能量转移
+
+蛋白质互作数据库：
+
+- BioGrid: <http://www.thebiogrid.org/>
+- ...
+
 

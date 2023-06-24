@@ -1,10 +1,58 @@
+
+# 浙江温州瑞安莘塍街道仙甲季老干部宿舍第三单元301室
+# 杭州市滨江区滨文路辅路与信诚南路交叉口龙湖冠寓浦沿冠一店1-1205
+# 2010年9月-2013年6月 浙江温州瑞安高楼宁益乡学校
+# 2013年9月-2016年6月 浙江温州瑞安第四中学
+# 2016年9月-2020年6月 浙江中医药大学滨江学院
+# 2020年9月-2023年6月 浙江中医药大学
+
+## ------------------------------------- 
+# sudo chmod u+s `which fusermount`
+
+function fastpush () {
+  git add -A
+  git commit -m "`date`"
+  git push origin master
+}
+
+## work group
+# /usr/share/texlive/texmf-dist
+alias h=cd\ ~/outline/lixiao/
+alias hs=cd\ ~/legend/story/re_rise/chapter_previous
+alias h0=cd\ ~/legend/story/essay/
+alias i=cd\ ~/utils.tool/inst/extdata\;ls
+alias g=cd\ ~/bash_script/terminal_groups\;ls
+alias coo=cd\ ~/outline/others/
+alias u=cd\ ~/utils.tool/R\;ls
+alias v=cd\ ~/Documents/WeChat\\\ Files
+alias r=cd\ /mnt/data/wizard/Documents/article/reports\;ls
+alias cwd=echo\ `pwd`\ \|\ xsel\ \-b\ \-i
+
+function c() {
+  cd $1
+  ls
+}
+## ------------------------------------- 
+
 article_mcnebula2=/mnt/data/wizard/Documents/article/MCnebula2
 docs=~/MCnebula2/content/en/docs
+alias m2pdf=R\ CMD\ Rd2pdf\ --title="MCnebula2"\ -o\ reference.pdf\ .
+
+alias panmd=pandoc\ --track-changes=all\ --strip-comments
 
 ## https://tableconvert.com API key: x5fiZX6L1yJtmBS1A6LIImVBorjd7c5f
 ## git@github.com:Cao-lab-zcmu/MCnebula2.git
 # https://cao-lab-zcmu.github.io/MCnebula2/
 # qqmail empower ozathvqzvmyfeiid
+# Aftereffect112
+# aftereffect112
+# MCnebula：基于非靶向 LC-MS/MS 技术的化学聚类可视化分析策略快速解析中药复杂化学成分
+
+# 2020年 获药学院二等奖学金
+# 2021年 获国家奖学金
+# 2022年 获药学院一等奖学金
+# 2023年 获药学院三等奖学金
+
 set -o vi
 ## alias
 relive() {
@@ -13,28 +61,16 @@ relive() {
 
 bash ~/bash_script/wallpaper.sh
 
-alias u=cd\ ~/utils.tool/R
 alias cd.=cd\ ..
 alias cd..=cd\ ../..
 alias cd...=cd\ ../../..
 alias t=cd\ /mnt/data/wizard/Documents/article/thesis
-alias h=cd\ ~/outline/mc.test
 alias tmp=cd\ ~/operation/tmp
 alias o=xdg-open
 alias lh=ls\ --size\ -h
 alias ccc=cd\ ~/legend/story/re_rise
 alias cvim=cd\ ~/.vim/after/ftplugin
 alias gett=xsel\ \-b\ \-i
-alias cmc=cd\ ~/MCnebula/R
-alias cex=cd\ ~/extra/R
-alias cul=cd\ ~/utils.tool/R
-alias cot=cd\ ~/outline/
-alias csd=cd\ ~/operation/desk/
-alias car=cd\ ~/Documents/article/
-alias ccar=cd\ /mnt/data/wizard/Documents/
-alias opd=xdg-open\ ~/Desktop
-alias cdd=cd\ ~/Desktop
-alias op=xdg-open
 alias send=google-chrome\ https://send-anywhere.com/
 alias deepl=google-chrome\ https://www.deepl.com/translator
 alias fy=trans

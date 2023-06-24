@@ -45,6 +45,8 @@ let g:iabbrev_list = {
 iabbrev ;;; assign("test", , .GlobalEnv)<esc>F,i
 
 let r_indent_align_args = 0
+let @s='?if (wwvb%hygistop("p==j'
+
 
 " R script
 iabbrev mda [annotation]: -----------------------------------------
@@ -235,3 +237,18 @@ function! Delete_comment()
   g/\v^\s*$/d
 endfunction
 
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'c:Classes',
+        \ 'g:Generics',
+        \ 'm:Methods',
+        \ 'r:ReplaceMethods',
+        \ 'f:Functions',
+        \ 'v:FunctionVariables',
+    \ ]
+\ }
+
+function! Pretty_equa()
+  s/\v(\s)@!\=(\s)@!/ = /g
+endfunction

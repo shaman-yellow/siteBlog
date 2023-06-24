@@ -24,6 +24,8 @@ nnoremap <C-m> :res 20<CR>
 nnoremap <C-b> :%s/\n\{3,\}/\r\r/<CR>
 tnoremap <C-v> <C-w>N
 
+nmap <F3> :TagbarOpenAutoClose<CR>
+
 function! Tab_switch()
   if winheight(0) >= 13
     execute "wincmd w"

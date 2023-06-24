@@ -1,4 +1,18 @@
 
+let g:vim_markdown_folding_level=2
+let g:vim_markdown_folding_disabled=0
+
+let @x='/{.comment-start?\[d%d%/{.comment-end?\[d%d%'
+let @c='di[la{.comment-startlaP`]a[la{.comment-end?{.comment-startb'
+let @d='/{\.deletion?\[d%d%'
+let @i='/{\.insertiond%?\[%x``x'
+let @u='/{.underline?\[%x``x/{.underlined%'
+let @n=':s/\v^/>&/g'
+let @k='a'
+
+function! Search_citeError()
+      /\v([^\[])@<=\^[0-9\-]*\^
+endfunction
 
 iabbrev mdper [person]:<Esc>
 iabbrev mdarm [arms]:<Esc>
@@ -15,8 +29,7 @@ iabbrev nsp &ensp;&ensp;
 " inoremap <Space>9 :
 " set foldexpr=getline(v:lnum)=~'^[^&#]'
 " set fdm=expr
-let g:vim_markdown_folding_level=2
-
+"
 vnoremap ;cu :s/#\'[^a-z]\{0,1\}//g<CR>
 vnoremap ;cc :s/^/#\' /g<CR>
 

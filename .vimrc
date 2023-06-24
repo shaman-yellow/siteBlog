@@ -53,24 +53,31 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 " ## ---------------------------------------------------------------------- 
 call vundle#begin()
-	Plugin 'gmarik/Vundle.vim'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'mhinz/vim-startify' 
-	Plugin 'jiangmiao/auto-pairs'
-	Plugin 'morhetz/gruvbox'
-	Plugin 'whatyouhide/vim-gotham'
-	Plugin 'godlygeek/tabular'
-	Plugin 'plasticboy/vim-markdown'
-	Plugin 'lervag/vimtex'
-	Plugin 'iamcco/markdown-preview.nvim'
-	Plugin 'scrooloose/nerdcommenter'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'dense-analysis/ale'
-  Plugin 'mikelue/vim-maven-plugin'
-  Plugin 'jalvesaq/Nvim-R'
-  Plugin 'tpope/vim-unimpaired'
-  Plugin 'bujnlc8/vim-translator'
-  " Plugin 'pseewald/vim-anyfold'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mhinz/vim-startify' 
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'morhetz/gruvbox'
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
+Plugin 'lervag/vimtex'
+Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'dense-analysis/ale'
+Plugin 'mikelue/vim-maven-plugin'
+Plugin 'jalvesaq/Nvim-R'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'bujnlc8/vim-translator'
+" Plugin 'Yggdroot/indentLine'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'preservim/tagbar'
+Plugin 'ZSaberLv0/ZFVimIM'
+Plugin 'ZSaberLv0/ZFVimJob'
+Plugin 'ZSaberLv0/ZFVimIM_openapi'
+Plugin 'shaman-yellow/pinyinDB'
+Plugin 'pseewald/vim-anyfold'
 call vundle#end()
 filetype indent on
 " ## ---------------------------------------------------------------------- 
@@ -132,56 +139,56 @@ endif
 command! -nargs=1 -complete=file -bang Rename call Rename(<q-args>, '<bang>')
 
 function! Rename(name, bang)
-	let l:name    = a:name
-	let l:oldfile = expand('%:p')
+  let l:name    = a:name
+  let l:oldfile = expand('%:p')
 
-	if bufexists(fnamemodify(l:name, ':p'))
-		if (a:bang ==# '!')
-			silent exe bufnr(fnamemodify(l:name, ':p')) . 'bwipe!'
-		else
-			echohl ErrorMsg
-			echomsg 'A buffer with that name already exists (use ! to override).'
-			echohl None
-			return 0
-		endif
-	endif
+  if bufexists(fnamemodify(l:name, ':p'))
+    if (a:bang ==# '!')
+      silent exe bufnr(fnamemodify(l:name, ':p')) . 'bwipe!'
+    else
+      echohl ErrorMsg
+      echomsg 'A buffer with that name already exists (use ! to override).'
+      echohl None
+      return 0
+    endif
+  endif
 
-	let l:status = 1
+  let l:status = 1
 
-	let v:errmsg = ''
-	silent! exe 'silent! saveas' . a:bang . ' ' . l:name
+  let v:errmsg = ''
+  silent! exe 'silent! saveas' . a:bang . ' ' . l:name
 
-	if v:errmsg =~# '^$\|^E329'
-		let l:lastbufnr = bufnr('$')
+  if v:errmsg =~# '^$\|^E329'
+    let l:lastbufnr = bufnr('$')
 
-		if expand('%:p') !=# l:oldfile && filewritable(expand('%:p'))
-			if fnamemodify(bufname(l:lastbufnr), ':p') ==# l:oldfile
-				silent exe l:lastbufnr . 'bwipe!'
-			else
-				echohl ErrorMsg
-				echomsg 'Could not wipe out the old buffer for some reason.'
-				echohl None
-				let l:status = 0
-			endif
+    if expand('%:p') !=# l:oldfile && filewritable(expand('%:p'))
+      if fnamemodify(bufname(l:lastbufnr), ':p') ==# l:oldfile
+        silent exe l:lastbufnr . 'bwipe!'
+      else
+        echohl ErrorMsg
+        echomsg 'Could not wipe out the old buffer for some reason.'
+        echohl None
+        let l:status = 0
+      endif
 
-			if delete(l:oldfile) != 0
-				echohl ErrorMsg
-				echomsg 'Could not delete the old file: ' . l:oldfile
-				echohl None
-				let l:status = 0
-			endif
-		else
-			echohl ErrorMsg
-			echomsg 'Rename failed for some reason.'
-			echohl None
-			let l:status = 0
-		endif
-	else
-		echoerr v:errmsg
-		let l:status = 0
-	endif
+      if delete(l:oldfile) != 0
+        echohl ErrorMsg
+        echomsg 'Could not delete the old file: ' . l:oldfile
+        echohl None
+        let l:status = 0
+      endif
+    else
+      echohl ErrorMsg
+      echomsg 'Rename failed for some reason.'
+      echohl None
+      let l:status = 0
+    endif
+  else
+    echoerr v:errmsg
+    let l:status = 0
+  endif
 
-	return l:status
+  return l:status
 endfunction
 
 
@@ -211,3 +218,50 @@ function! Insert_line()
     execute "normal k"
   endif
 endfunction
+
+" function! s:myLocalDb()
+"   let db = ZFVimIM_dbInit({
+"         \   'general' : 'pinyinDB',
+"         \ })
+"   call ZFVimIM_cloudRegister({
+"         \   'mode' : 'local',
+"         \   'dbId' : db['general'],
+"         \   'repoPath' : '/home/echo/.vim/after/ftplugin/pinyinDB',
+"         \   'dbFile' : '/pinyin_huge.txt',
+"         \   'dbCountFile' : '/pinyin_huge_count.txt', 
+"         \ })
+" endfunction
+" autocmd User ZFVimIM_event_OnDbInit call s:myLocalDb()
+
+let g:zf_git_user_email='shaman-yellow@foxmail.com'
+let g:zf_git_user_name='shaman-yellow'
+let g:zf_git_user_token='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'
+
+let g:ZFVimIM_symbolMap = {
+            \   '`' : ['·'],
+            \   '!' : ['！'],
+            \   '$' : ['￥'],
+            \   '^' : ['……'],
+            \   '-' : [''],
+            \   '_' : ['——'],
+            \   '(' : ['（'],
+            \   ')' : ['）'],
+            \   '[' : ['【'],
+            \   ']' : ['】'],
+            \   '<' : ['<'],
+            \   '>' : ['>'],
+            \   '\' : ['、'],
+            \   '/' : ['/'],
+            \   ';' : ['；'],
+            \   ':' : ['：'],
+            \   ',' : ['，'],
+            \   '.' : ['。'],
+            \   '?' : ['？'],
+            \   "'" : ['‘', '’'],
+            \   '"' : ['“', '”'],
+            \ }
+
+" let &statusline='%{ZFVimIME_IMEStatusline()}'.&statusline
+let g:ZFVimIM_autoAddWordLen=12
+
+
